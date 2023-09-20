@@ -1,0 +1,38 @@
+Regex Cheats
+
+
+([^\s]+) - mathc untill space 
+
+Caller Computer Name:\s*(\w.+) - match all after 
+
+1
+
+general : 
+([^\p]+) - Magical Regex that i dont fully understand
+([^\s]+) - Match untill space
+"(.*?)"  - match between quotes
+\|(\w+)\| - match between pipeline 
+([^\t]+) - match untill double space חלל (tab)
+([^\;]+) - match untill ; (can be replaced with anything)
+([^\*]+) - untill the bitter end
+([^Ta]+) to avoid illigal escape - to example - TA can be changed to anything ( char / is illigal escapte)
+CommandLine="(.*?)"* ([^\s]+) "(.*?)" - for example - match with "" space "" in long command lines - * char is extra space needed to catch all data 
+CommandLine=(.+?)\s+TargetUserSid - parse from command line untill target user SID
+ScriptBlockText=(.*?)(?= ScriptBlockId)  - catch result from "scriptblocktext" untill space and then everything untill "scriptblockID"
+
+
+
+checkpoint management : 
+rule_name:\s*(\S+); - general data 
+rule_name:"[^"]+";\s*([^;]+)\s*; rule_uid:"[^"]+" - match between second rule_name untill rule_uid
+(?<=rule_name:")([^"]+)(?=";)([^\s]+) rule_name:([^\;]+) - same as above but half working 
+
+
+
+JASON PARSING EMAPLES:
+/"data"/"impactScope"[0]/"entityValue"/"name"  - get the name 
+/"data"/"impactScope"[0]/"entityValue"[3] - get the parameter in the 3rd place 
+
+
+Correlation rule sentence
+these rules match at least this many times in this many minutes after any of these rules match with the same event 
