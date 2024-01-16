@@ -1,0 +1,229 @@
+UPDATED!!!!! 09/01/2024
+/opt/qradar/support/all_servers.sh -C -k "du -h /store/transient/spillover/" && /opt/qradar/support/all_servers.sh -C -k "du -h /store/persistent_queue/"
+du -h /store/transient/spillover/ && du -h /store/persistent_queue/
+#EICAR-TEST:
+https://secure.eicar.org/eicar_com.zip
+#TCPDUMP:
+tcpdump -nnAs0 -i any host 10.11.11.10 and port 514
+#CHECK HA QRADAR:
+/opt/qradar/ha/bin/ha cstate
+/opt/qradar/ha/bin/ha takeover
+#CHECK QUEUE QRADAR:
+du -h /store/transient/spillover/
+du -h /store/persistent_queue/
+#RPM:
+yum reinstall -y PROTOCOL-MicrosoftAzureEventHubs-7.5-20230330194121.noarch.rpm (בנתיב שהקובץ שהורדנו נמצא)
+rpm -qa | grep -i azure
+#OTHERS:
+du -h --max-depth=1 | sort -h
+psql -U qradar -c "select id, name from tenant where deleted='f';"
+mpstat
+sar
+sudo su -
+/opt/qradar/conf/trusted_certificates/syslog-tls.key
+/opt/qradar/conf/trusted_certificates/syslog-tls.cert
+crontab -e
+tail -f
+du -h
+ssh <Remote Host IP> -o StrictHostKeyChecking=no
+systemctl restart ecs-ec-ingress
+du -a | sort -n -r | head -n 10
+/opt/qradar/support/qappmanager
+#UNLOCK USER QRADAR:
+/opt/qradar/bin/runjava.sh com.ibm.si.security_model.authentication.AuthenticationLockoutCommandLineTool --remove-account <user_account1> <user_account2> <user_account3>
+#CHECK BOARD UP INTERFACE QRADAR:
+/etc/sysconfig/network-scripts/ifcfg-ens224
+#CHECK VERSION:
+/opt/qradar/bin/myver -v
+#DNS/DG:
+cat /etc/resolv.conf
+route -n
+#SCP:
+scp -rv /store/ariel/events/records/aux/14/2021/10/ experis@10.187.10.2:E:/Log/
+scp -rv /store/ariel/events/records/aux/14/2022/{1,2,3,4,5} experis@10.187.10.2:E:/Log/new_2022/
+scp -r root@QRadar-MimunYashir-Processor:/store/ariel/events/records/aux/6/2018/11 /transient/mimun-bck/
+#LOGRUN:
+/opt/qradar/bin/logrun.pl -d 10.89.40.200 -p 514 -f 2.txt 100
+#ALLHOSTS COMMANDS:
+/opt/qradar/support/all_servers.sh -C -k "df -Th | grep store"
+/opt/qradar/support/all_servers.sh -C -k "/opt/qradar/bin/myver -v"
+/opt/qradar/support/all_servers.sh -C -k "du -h /store/persistent_queue/"
+/opt/qradar/support/all_servers.sh -C -k "du -h /store/transient/spillover/"
+/opt/qradar/support/all_servers.sh -C -k "free -h"
+#ARIEL DB SERACH:
+systemctl status ariel_proxy_server(console)
+systemctl status ariel_query_server(procesor)
+#SWAP:
+להכניס לSWAP מקום אם הוא על 0 : (עם נתיב)
+swapon -v /dev/nvme1n1p1 
+#GETLOGS:
+/opt/qradar/support/get_logs.sh
+#WINDOWS - Event viewer files:
+C:\Windows\System32\winevt\Logs
+#WINDOWS - CMD Clock:
+tzutil /s "Israel Standard Time"
+#WINDOWS - Check Free Space:
+fsutil volume diskfree e:
+#WINDOWS - Replecation DC AD check on powershell - 
+Repadmin /replsummary
+#JIRA:
+to change from yellow to green in prtg, in jiraui cli:
+clear_jira
+#BGW:
+check connection to courts from BGW port 443:
+curl -S -X GET -H 'Range: items=0-49' -H 'Version: 16.1' -H 'Accept: application/json' -H 'SEC: 69fb02d3-e67f-4050-9114-23b52f2628c3' 'https://10.51.100.115/api/siem/offenses' -vvv
+#QRADAR: Stop iptables
+*/5 * * * * systemctl stop iptables
+#QRADAR BANDWICH:
+bandwich check qradar:
+grep "Replication download" /var/log/qradar.log | tail
+#QRADAR INFO:
+routing rules (choose who send the events):
+online=collectors
+offline=processors
+חוק keepalive על flows
+vmware esxi latency max: 20
+MAM=app MDM=device
+DLC
+LINUX BASH#
+chmod +x 1.sh
+#QRADAR STATUS DEPLOY:
+cd /store/tmp/status
+ls -l
+#CERTS
+cd /etc/httpd/conf/certs/
+#1GB FILE - create 1 GB file:
+fallocate -l 1G LargeFile.img
+#QRADAR TOP10 - top 10 large files in directory:
+find . -printf '%s %p\n'| sort -nr | head -10
+du -h -a /store/ariel/events/records/ | sort -n -r | head -n 10
+#Large directory from current location:
+du -h --max-depth=1 | sort -h
+#ARIEL DATABASE RETENTION:
+/store/ariel/events/records/aux/[2/2019/1]
+/store/ariel/events/payloads/aux/6/2019/1
+#QRADAR SERVICES:
+systemctl status imq
+# The Host Context component monitors all IBM® Security QRadar® components to make sure that each component is operating as expected.
+systemctl status hostcontext
+systemctl status tomcat
+systemctl status hostservices
+# systemctl stop hostcontext
+# systemctl stop tomcat
+# systemctl stop hostservices
+# systemctl start hostcontext
+# systemctl start tomcat
+# systemctl start hostservices
+systemctl status ecs-ec-ingress.service
+systemctl status ecs-ec.service
+systemctl status ecs-ep.service
+systemctl restart ecs-ec.service
+systemctl restart ecs-ep.service
+----------------------------------
+#QRADAR - Add a temporary static route:
+ip route add 10.187.10.1/32 via 172.30.15.10 dev ens224
+ip route add 192.168.53.0/24 via 172.30.15.10 dev ens224
+#QRADAR SESSIONS - session opened:
+This will enable the command to finish successfully - even if the session closes.
+screen -S get_logs_v1
+/opt/qradar/support/get_logs.sh -Stag -q 7
+To exit the screen session and leave the get_logs running
+CTRL a d
+To see the screen sessions
+screen -ls
+And to reconnect
+screen -r get_logs_v1
+Once the logs have finished - you can kill the screen session
+screen -X -S get_logs_v1 kill
+We will not be able to perform an RCA without the logs from the primary node.
+---------------------------------------------
+#CHECKPOINT:
+יש להכנס לEXPERT MODE רק דרך הGAIA
+ושם לבצע את המדריך של ה LEEF
+cp_log_export add name qradarnew target-server 10.10.10.99 target-port 514 protocol udp format leef
+---------------------------------------------
+DESKTOP-ACB9TOI - המחשב הישן של מישה
+DESKTOP-PL9H5UJ - המחשב הישן של רומן
+---------------------------------------------
+#LINUX - SEND RSYSLOG:
+*.* @@192.168.20.42:514
+---------------------------------------------
+#SPLUNK:
+Deploynment Server = Console
+Indexer Server = Processor
+StandAlone = AIO
+/opt/splunk/bin/splunk start
+/opt/splunk/bin/splunk status
+/opt/splunk/bin/splunk -version
+---------------------------------------------
+#WINDOWS-SYNC NTP:
+w32tm /resync
+---------------------------------------------
+#AZURE:
+אם מוחקים / מבטלים מכונה - צריך לבטל גם את ה RESERVED
+אם מבטלים את ה RESERVED אחרי נגיד שנתיים (לפני סוף החוזה) אפשר לדבר עם ה SUPPORT והם יעזרו לנו כי זה פעם ראשונה לא לשלם את ההפרש שצריך
+---------------------------------------------
+Windows-CHECK Event id's audit logs:
+auditpol /list /subcategory:*
+auditpol /get /category:*
+---------------------------------------------
+#FW - FORTI:
+if we want to go out with different ip (if there is block off class a private ip's like in checkpoint) we will change the phase 2 to 0.0.0.0/0 and make virtual ip + rule with nat of it
+---------------------------------------------
+#WINDOWS - Creating User on CMD:
+net user Yotamt Harel1949! /add
+net user USERNAME NEWPASS
+---------------------------------------------
+דנילין - 13:00-22:00
+---------------------------------------------
+רגיל EPS חיפוש :
+MARS
+---------------------------------------------
+install win11 on vmware:
+shift+f10 and -
+REG ADD HKLM\SYSTEM\Setup\LabConfig /v BypassTPMCheck /t REG_DWORD /d 1
+---------------------------------------------
+ls -altr
+---------------------------------------------
+#WINDOWS - SYNC TO NTP:
+w32tm /query /status
+w32tm /config /syncfromflags:manual /manualpeerlist:your.dc.server /reliable:YES /update
+net stop w32time
+net start w32time
+tzutil /g
+tzutil /s "Israel Standard Time"
+---------------------------------------------
+#MANAGEENGINE:
+to change te patch mgmt tab -
+https://localhost:8383/dcapi/secaddon/disableaddon?addonName=Vulnerability
+
+replace localhost with server fqdn
+To enable again
+https://localhost:8383/dcapi/secaddon/enableaddon?addonName=Vulnerability
+---------------------------------------------
+#WINDOWS- KMS ACTIVATION:
+https://gist.github.com/butageek/e6a5061ff7a80494b33d4bf3b6fb25be
+https://gist.github.com/mokoshalb/b87326bbb62805e94da72f8d0f73f563
+
+datacenter all processes from beginning:
+
+DISM /online /Set-Edition:ServerDatacenter /ProductKey:WMDGN-G9PQG-XVVXX-R3X43-63DFG /AcceptEula
+slmgr /ipk WMDGN-G9PQG-XVVXX-R3X43-63DFG
+slmgr /skms dimanyakms.sytes.net
+slmgr /ato
+slmgr /dlv
+---------------------------------------------
+#WINDOWS-License KMS:
+
+DISM /online /Set-Edition:ServerDatacenter /ProductKey:WMDGN-G9PQG-XVVXX-R3X43-63DFG /AcceptEula
+slmgr /ipk WMDGN-G9PQG-XVVXX-R3X43-63DFG
+slmgr /skms dimanyakms.sytes.net
+slmgr /ato
+slmgr /dlv
+
+@@for Workstation, without the first raw (and with the key of workstation instead).
+---------------------------------------------
+#JIRA:
+cd /opt/atlassian/jira/bin
+./stop-jira.sh
+./start-jira.sh
